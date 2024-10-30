@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 equal columns for non-mobile view */
+    gap: 1%; /* 1% gap between images in desktop view */
+    margin: 1%; /* 1% margin from the edges of the window in desktop view */
+    padding: 0; /* Remove default padding */
+}
+
+.image-caption-pair {
+    display: flex;
+    flex-direction: column; /* Stack image and caption */
+}
+
+.image-caption-pair a {
+    display: block; /* Make the entire area clickable */
+}
+
+.image-caption-pair img {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove bottom space under images */
+}
+
+.caption {
+    text-align: center;
+    margin: 5px 0; /* Small gap for captions */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 equal columns for mobile view */
+        gap: 2%; /* 2% gap between images in mobile view */
+        margin: 2%; /* 2% margin from the edges of the window in mobile view */
+    }
+
+    header {
+        padding: 4%;
+    }
+}
+
+/* Media query for desktop */
+@media (min-width: 769px) {
+    /* Increase margin under captions specifically for desktop */
+    .image-caption-pair .caption {
+        margin-bottom: 20px; /* Add a larger gap under each caption */
+    }
+
+    header {
+        margin: 20px 0;
+        padding: 1%;
+    }
+}
