@@ -29,7 +29,6 @@
             border: 1px solid #ccc; /* Light border for visibility */
             border-radius: 8px; /* Rounded corners */
             margin: 10px 0; /* Space between options */
-            padding: 15px; /* Inner padding for better spacing */
             width: 80%; /* Width relative to the page */
             text-align: center; /* Center the text */
             transition: background-color 0.3s; /* Smooth transition for hover effect */
@@ -39,22 +38,20 @@
             background-color: #e0e0e0; /* Change background on hover */
         }
 
+        /* Making the link fill the whole song-option area */
         .song-option a {
+            display: block; /* Block display to fill parent div */
+            width: 100%; /* Full width of the parent */
+            height: 100%; /* Full height of the parent */
             text-decoration: none; /* Remove underline */
             color: #333; /* Dark text color */
             font-size: 1.2em; /* Slightly larger font size */
             font-weight: bold; /* Bold text */
         }
 
-        .message {
-            text-align: center;
-            margin: 20px; /* Margin for the message section */
-        }
-
-        .message img {
-            max-width: 100%; /* Responsive image size */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 8px; /* Rounded corners for images */
+        /* Inner padding wrapper to simulate padding within the clickable area */
+        .padding-wrapper {
+            padding: 15px; /* Inner padding for better spacing */
         }
     </style>
 </head>
@@ -64,13 +61,19 @@
     </header>
     <div class="song-options">
         <div class="song-option">
-            <a href="song13.html">Blank Space</a>
+            <a href="song13.html">
+                <div class="padding-wrapper">Blank Space</div>
+            </a>
         </div>
         <div class="song-option">
-            <a href="song14.html">Style</a>
+            <a href="song14.html">
+                <div class="padding-wrapper">Style</div>
+            </a>
         </div>
         <div class="song-option">
-            <a href="song15.html">Wildest Dreams</a>
+            <a href="song15.html">
+                <div class="padding-wrapper">Wildest Dreams</div>
+            </a>
         </div>
     </div>
 </body>
