@@ -104,12 +104,14 @@
             // Define the song and team details for this page
             const songName = "Picture to Burn";
             const teamName = "Baltimore Orioles";
+            const teamImageUrl = "https://www.bratinstitute.com/SWIFTIES/teams/team2.jpg";
 
             // Send the email using EmailJS
             emailjs.send('service_aw271mi', 'template_ziy0d7g', {
                 user_email: userEmail,
                 song_name: songName,
-                team_name: teamName
+                team_name: teamName,
+                team_image_url: teamImageUrl
             }).then(() => {
                 alert('Email sent successfully!');
                 document.getElementById('email-form').reset();
