@@ -3,65 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fifteen</title>
+    <title>Love Story</title>
     <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> <!-- Include the emailjs script -->
     <style>
         body {
             margin: 0;
             font-family: Futura;
-            background-color: #f9f9f9; /* Light background for contrast */
+            background-color: #f9f9f9;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center content horizontally */
-            justify-content: center; /* Center content vertically */
-            /* height: 100vh; Full height of the viewport */
-            text-align: center; /* Center-align text */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         header {
-            /* margin-bottom: 20px; /* Space below the header */
+            margin-bottom: 20px;
         }
 
         .message {
-            /* background-color: #fff; /*  White background for message box */
-            /* border: 1px solid #ccc; /* Light border */
-            /* border-radius: 8px; /* Rounded corners */
-            padding: 20px; /* Inner padding */
-            width: 80%; /* Width relative to the page */
-            /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 20px;
+            width: 80%;
         }
 
         .message img {
-            width: 60%; /* Set image width to 60% of viewport */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 8px; /* Rounded corners for image */
-            margin-top: 15px; /* Space above the image */
+            width: 60%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
         }
 
         a {
-            margin-top: 20px; /* Space above the link */
-            text-decoration: none; /* Remove underline */
-            color: #007BFF; /* Bootstrap primary color */
-            font-weight: bold; /* Bold text */
-            transition: color 0.3s; /* Smooth transition for hover effect */
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            transition: color 0.3s;
         }
 
         a:hover {
-            color: #0056b3; /* Darker color on hover */
+            color: #0056b3;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Your team is the Mets!</h1>
+        <h1>Your team is the Rangers!</h1>
     </header>
     <div class="message">
-        <p>The MLB team equivalent to "Fifteen" by Taylor Swift is the
-            New York Mets.<br><br>
+        <p>The MLB team equivalent to "Love Story" by Taylor Swift is the Texas Rangers.<br><br>
             Here's an outfit inspo mood board based on your song and team combo:
         </p>
-        <img src="../teams/team6.jpg" alt="Mets">
+        <img src="../teams/team4.jpg" alt="Rangers">
     </div>
     <a href="../index.html">Back to Album Selection</a>
+
+    <form id="email-form" onsubmit="sendEmail(event)">
+        <label for="user-email">Email your result:</label>
+        <input type="email" id="user-email" name="user_email" placeholder="Enter your email" required>
+        <button type="submit">Send Email</button>
+    </form>
+
+    <script>
+        // Initialize EmailJS (done once for all pages)
+        (function() {
+            emailjs.init('vX1KWHa4CDQe_DFEW');  // Your EmailJS User ID
+        })();
+
+        // Define sendEmail function to handle the email sending process
+        function sendEmail(event) {
+            event.preventDefault();
+
+            // Get the user's email input
+            const userEmail = document.getElementById('user-email').value;
+            
+            // Define the song and team details for this page
+            const songName = "Love Story";
+            const teamName = "Texas Rangers";
+            const teamImageUrl = "https://www.bratinstitute.com/SWIFTIES/teams/team4.jpg";
+
+            // Send the email using EmailJS
+            emailjs.send('service_aw271mi', 'template_ziy0d7g', {
+                user_email: userEmail,
+                song_name: songName,
+                team_name: teamName,
+                team_image_url: teamImageUrl
+            }).then(() => {
+                alert('Email sent successfully!');
+                document.getElementById('email-form').reset();
+            }).catch((error) => {
+                alert('Failed to send email. Please try again.');
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
