@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teardrops on My Guitar</title>
     <link rel="stylesheet" href="../styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> <!-- Include the emailjs script first -->
-    <script>
-        (function() {
-            emailjs.init('vX1KWHa4CDQe_DFEW');  // Your EmailJS User ID
-        })();
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> <!-- Include the emailjs script -->
     <style>
         body {
             margin: 0;
@@ -93,6 +88,36 @@
         <button type="submit">Send Email</button>
     </form>
 
-    <script src="../email.js"></script> <!-- Include your email.js script last -->
+    <script>
+        // Initialize EmailJS (done once for all pages)
+        (function() {
+            emailjs.init('vX1KWHa4CDQe_DFEW');  // Your EmailJS User ID
+        })();
+
+        // Define sendEmail function to handle the email sending process
+        function sendEmail(event) {
+            event.preventDefault();
+
+            // Get the user's email input
+            const userEmail = document.getElementById('user-email').value;
+            
+            // Define the song and team details for this page
+            const songName = "Teardrops on My Guitar";
+            const teamName = "Guardians";
+
+            // Send the email using EmailJS
+            emailjs.send('service_aw271mi', 'template_ziy0d7g', {
+                user_email: userEmail,
+                song_name: songName,
+                team_name: teamName
+            }).then(() => {
+                alert('Email sent successfully!');
+                document.getElementById('email-form').reset();
+            }).catch((error) => {
+                alert('Failed to send email. Please try again.');
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </body>
 </html>
